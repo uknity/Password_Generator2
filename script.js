@@ -24,34 +24,47 @@ function writePassword() {
 
 // function called within writePassword function to generate password
 function generatePassword() {
-  // establishes an empty array to fill with user-selected criteria
+  //sets the possibleCharacters array
   var possibleCharacters = [];
-  // user is prompted to confirm whether they want numbers in their password
-  var confirmNumbers = confirm("You can generate a password with numbers, special characters, lowercase letters, and/or uppercase letters.  Would you like numbers in your password?");
-  // if user clicks "ok," the number array is added to the possibleCharacters array
-  if (confirmNumbers) {
-    possibleCharacters = possibleCharacters.concat(number);
-  }
-  // user is prompted to confirm whether they want special characters in their password
-  var confirmCharacters = confirm("Would you like special characters in your password?");
-  // if user clicks "ok," the character array is added to the possibleCharacters array
-  if (confirmCharacters) {
-    possibleCharacters = possibleCharacters.concat(character);
-  }
-  // user is prompted to confirm whether they want lowercase letters in their password
-  var confirmLowerCase = confirm("Would you like lowercase letters in your password?");
-  // if user clicks "ok," the lowerCase array is added to the possibleCharacters array
-  if (confirmLowerCase) {
-    possibleCharacters = possibleCharacters.concat(lowerCase);
-  }
-  // user is prompted to confirm whether they want uppercase letters in their password
-  var confirmUpperCase = confirm("Would you like uppercase letters in your password?");
-  // if user clicks "ok," the uppercase array is added to the possibleCharacters array
-  if (confirmUpperCase) {
-    possibleCharacters = possibleCharacters.concat(upperCase);
-  }
+      //function to ensure that at least 1 of the password criteria is selected
+      function checkPossibleCharacters() {
+      //prompts the user to select whether they would like numbers in their password; if confirm, numbers array is added to possibleCharacters array
+      var confirmNumbers = confirm("You can generate a password with numbers, special characters, lowercase letters, and/or uppercase letters.  Would you like numbers in your password?");
+      
+      if (confirmNumbers) {
+        possibleCharacters = possibleCharacters.concat(number);
+      }
+      //prompts the user to select whether they would like special characters in their password; if confirm, characters array is added to possibleCharacters array
+      var confirmCharacters = confirm("Would you like special characters in your password?");
+      
+      if (confirmCharacters) {
+        possibleCharacters = possibleCharacters.concat(character);
+      }
+      //prompts the user to select whether they would like lowercase letters in their password; if confirm, lowerCase array is added to possibleCharacters array
+      var confirmLowerCase = confirm("Would you like lowercase letters in your password?");
+      
+      if (confirmLowerCase) {
+        possibleCharacters = possibleCharacters.concat(lowerCase);
+      }
+      //prompts the user to select whether they would like uppercase letters in their password; if confirm, upperCase array is added to possibleCharacters array
+      var confirmUpperCase = confirm("Would you like uppercase letters in your password?");
+      
+      if (confirmUpperCase) { 
+        possibleCharacters = possibleCharacters.concat(upperCase);
+      }
+      // if user doesn't select at least one criteria, they are alerted and function is regenerated
+      if ((!confirmNumbers)&&(!confirmCharacters)&&(!confirmLowerCase)&&(!confirmUpperCase)) {
+          alert("You must choose at least 1 criteria for your password: numbers, special characters, lowercase letters, and/or uppercase letters.")
+          checkPossibleCharacters();
+      }
+      // if user selects at least 1 criteria, possibleCharacters is returned 
+      return possibleCharacters;
+      }
+    // calls the function 
+    checkPossibleCharacters();
   console.log(possibleCharacters);
 
+  
   //prompts the user to enter a number of characters for their password between 8 and 128.  If they choose the wrong number of characters, they will be required to reenter a number.
   var numberOfCharacters = Number(prompt("How many characters would you like in your password?  You must have at least 8 characters and no more than 128."));
 
@@ -60,20 +73,8 @@ function generatePassword() {
     var numberOfCharacters = Number(prompt("How many characters would you like in your password?  You must have at least 8 characters and no more than 128."));
 
   }
-
+  
   alert("Great choice!");
-
-
-
-
-  // var numberOfCharacters = Number(prompt("How many characters would you like in your password?  You must have at least 8 characters and no more than 128."));
-
-  // if ((numberOfCharacters > 7) && (numberOfCharacters < 129)) {
-  //   alert("Great Choice!");
-
-  //   } else {
-  //   Number(prompt("Your selection must be at least 8 and no more than 128.  Please enter a new number."));
-  //   }
 
 
   // loop assigns random characters from the possibleCharacters array in the length of the requested number of characters and returns the final password
@@ -85,8 +86,7 @@ function generatePassword() {
     console.log(includedCharacter);
     finalPassword += includedCharacter;
   }
+
   return finalPassword;
-
-
-
+  
 }
