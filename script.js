@@ -55,28 +55,38 @@ function generatePassword() {
   //prompts the user to enter a number of characters for their password between 8 and 128.  If they choose the wrong number of characters, they will be required to reenter a number.
   var numberOfCharacters = Number(prompt("How many characters would you like in your password?  You must have at least 8 characters and no more than 128."));
 
-    if ((numberOfCharacters > 7) && (numberOfCharacters < 129)) {
-      alert("Great Choice!");
-      
-      } else {
-      Number(prompt("Your selection must be at least 8 and no more than 128.  Please enter a new number."));
-      }
-  
-      
-  console.log(numberOfCharacters);
+  while (numberOfCharacters < 8 || numberOfCharacters > 128) {
+    alert("Your selection must be at least 8 and no more than 128.");
+    var numberOfCharacters = Number(prompt("How many characters would you like in your password?  You must have at least 8 characters and no more than 128."));
+
+  }
+
+  alert("Great choice!");
+
+
+
+
+  // var numberOfCharacters = Number(prompt("How many characters would you like in your password?  You must have at least 8 characters and no more than 128."));
+
+  // if ((numberOfCharacters > 7) && (numberOfCharacters < 129)) {
+  //   alert("Great Choice!");
+
+  //   } else {
+  //   Number(prompt("Your selection must be at least 8 and no more than 128.  Please enter a new number."));
+  //   }
+
 
   // loop assigns random characters from the possibleCharacters array in the length of the requested number of characters and returns the final password
   var finalPassword = "";
-    for (var i = 0; i < numberOfCharacters; i++) {
+  for (var i = 0; i < numberOfCharacters; i++) {
 
-      var randomNumber = Math.floor(Math.random() * possibleCharacters.length);
-      var includedCharacter = possibleCharacters[randomNumber];
-      console.log(includedCharacter);
-      finalPassword += includedCharacter;
+    var randomNumber = Math.floor(Math.random() * possibleCharacters.length);
+    var includedCharacter = possibleCharacters[randomNumber];
+    console.log(includedCharacter);
+    finalPassword += includedCharacter;
   }
   return finalPassword;
 
 
 
 }
-
